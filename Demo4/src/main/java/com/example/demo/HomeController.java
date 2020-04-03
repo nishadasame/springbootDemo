@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.model.User;
+import com.example.demo.model.User;
 
 @Controller
 public class HomeController {
 
+	@Autowired
+	RepoUser repo;
+	
 	@RequestMapping("/")
 	public String home()
 	{
@@ -70,10 +74,19 @@ public class HomeController {
 	@GetMapping("getAlian")
 	public String getUser(Model m)
 	{
+		
+		m.addAttribute("u",repo.findAll());
+		return "getAlian";
+		
+	}
+	
+	/*@GetMapping("getAlian")
+	public String getUser(Model m)
+	{
 		List<User> u = Arrays.asList(new User(1,"abc"),new User(2,"xyz"));
 		m.addAttribute("u",u);
 		return "getAlian";
 		
-	}
+	}*/
 	
 }

@@ -1,8 +1,24 @@
-package com.example.model;
+package com.example.demo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user", schema = "public")
 public class User {
+	
+	@Id
 	private int id;
 	private String name;
+	
+	
+
+	public User() {
+		super();
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -24,10 +40,6 @@ public class User {
 		this.id = id;
 		this.name = name;
 	}
-	public User() {
-		super();
-	}
-	
 	
 	
 
